@@ -12,7 +12,7 @@ GROUP BY year;
 -- query the day with the highest rainfall
 SELECT
 	date AS rainiest_day,
-    precipitation
+    	precipitation
 FROM weather
 WHERE precipitation = (
 	SELECT
@@ -22,7 +22,7 @@ WHERE precipitation = (
 -- query the day with the highest max temperature
 SELECT
 	date AS hottest_high,
-    max_temp
+    	max_temp
 FROM weather
 WHERE max_temp = (
 	SELECT 
@@ -32,7 +32,7 @@ WHERE max_temp = (
 -- query the day with the lowest min temperature
 SELECT
 	date AS lowest_low,
-    min_temp
+    	min_temp
 FROM weather
 WHERE min_temp = (
 	SELECT 
@@ -42,22 +42,22 @@ WHERE min_temp = (
 -- query the average rainfall per year
 SELECT
 	EXTRACT(YEAR FROM date) AS year,
-    ROUND(AVG(precipitation), 3) AS avg_rainfall
+    	ROUND(AVG(precipitation), 3) AS avg_rainfall
 FROM weather
 GROUP BY year;
 
 -- query the average temperature per year
 SELECT
 	EXTRACT(YEAR FROM date) AS year,
-    ROUND(AVG(max_temp - min_temp / 2), 1) AS avg_temp
+    	ROUND(AVG(max_temp - min_temp / 2), 1) AS avg_temp
 FROM weather
 GROUP BY year;
 
 -- query the average max and min temperatures per year
 SELECT
 	EXTRACT(YEAR FROM date) AS year,
-    ROUND(AVG(min_temp), 1) AS avg_low,
-    ROUND(AVG(max_temp), 1) AS avg_high
+    	ROUND(AVG(min_temp), 1) AS avg_low,
+    	ROUND(AVG(max_temp), 1) AS avg_high
 FROM weather
 GROUP BY year;
 
@@ -67,8 +67,8 @@ WITH daily_average AS (
 		EXTRACT(MONTH FROM date) AS month,
 		EXTRACT(DAY FROM date) AS day,
 		ROUND(AVG(precipitation), 2) AS avg_rainfall,
-        ROUND(AVG(max_temp), 1) AS avg_high,
-        ROUND(AVG(min_temp), 1) AS avg_low
+        	ROUND(AVG(max_temp), 1) AS avg_high,
+        	ROUND(AVG(min_temp), 1) AS avg_low
 	FROM weather
 	GROUP BY month, day
 	ORDER BY month, day
